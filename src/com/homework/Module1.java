@@ -3,6 +3,7 @@ import java.util.Scanner;
 
     public class Module1 {
         public static void main() {
+            System.out.println("Input number a task: ");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
             int x;
