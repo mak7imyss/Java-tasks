@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Module2 {
     public static void main() {
 
-        System.out.print("Input number a task: ");
+        System.out.print("Введите номер задачи: ");
         Scanner sc = new Scanner(System.in);
         int task = sc.nextInt();
         String str, str1;

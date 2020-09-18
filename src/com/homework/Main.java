@@ -8,15 +8,18 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Input number a module: ");
+        System.out.print("Введите номер модуля: ");
         int module = sc.nextInt();
-        switch (module){
-            case 1:
+        switch (module) {
+            case 1 -> {
                 Module1.main();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 Module2.main();
-                break;
-        };
+            }
+            case 3 -> {
+                Module3.main();
+            }
+        }
     }
 }

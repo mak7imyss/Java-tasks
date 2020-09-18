@@ -3,7 +3,7 @@ import java.util.Scanner;
 
     public class Module1 {
         public static void main() {
-            System.out.print("Input number a task: ");
+            System.out.print("Введите номер задачи: ");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
             int x;
