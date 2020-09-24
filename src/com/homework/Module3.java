@@ -1,10 +1,8 @@
 package com.homework;
-    import javax.swing.table.TableRowSorter;
     import java.util.Arrays;
     import java.util.HashSet;
     import java.util.Scanner;
     import java.util.Set;
-    import java.util.regex.Pattern;
 
 public class Module3 {
     public static void main() {
@@ -53,10 +51,29 @@ public class Module3 {
                 str1 = sc.nextLine();
                 System.out.println(Task6(str,str1));
             }
-            case 7 -> {}
-            case 8 -> {}
-            case 9 -> {}
-            case 10 -> {}
+            case 7 -> {
+                System.out.print("Введите положительное целое число: ");
+                x = sc.nextInt();
+                System.out.println(Task7(x));
+            }
+            case 8 -> {
+                System.out.print("Введите последователньость 0 и 1: ");
+                sc.nextLine();
+                str = sc.nextLine();
+                System.out.println(Task8(str));
+            }
+            case 9 -> {
+                System.out.print("Введите число: ");
+                x = sc.nextInt();
+                System.out.println(Task9(x));
+            }
+            case 10 -> {
+                System.out.print("Введите три числа: ");
+                a = sc.nextInt();
+                b = sc.nextInt();
+                c = sc.nextInt();
+                System.out.println(Task10(a,b,c));
+            }
 
         }
 
@@ -108,11 +125,74 @@ public class Module3 {
         return str.matches("^#[0-9a-fA-F]{6}");
     }
     public static boolean Task6(String str, String str1){
+        //есть ошибка при заполнении первым символом пробела, т.к. тогда пустую строка принимается за элемент множества
         Set<String> set1 = new HashSet<String>(Arrays.asList(str.split(" ")));
-        System.out.println(set1);
         Set<String> set2 = new HashSet<String>(Arrays.asList(str1.split(" ")));
-        System.out.println(set2);
         return set1.size() == set2.size();
     }
+    public static boolean Task7(int x){
+        int left, right, len=0,s;
+        int n=(int) Math.pow(x,2);
+        //len=(Math.ceil(Math.log10(x)))
+        while (n>0){
+            n/=10;
+            len++;
+        }
+        n=(int) Math.pow(x,2);
+        if (n%2==0){
+            //Однаковая длинна
+            left = (int) (n/Math.pow(10,len/2));
+            right = (int) (n%Math.pow(10,len/2));
+        }
+        else{
+            //Левая часть короче или 0
+            left = (int) (n/Math.pow(10,len/2+1));
+            right = (int) (n%Math.pow(10,len/2+1));
+        }
+        s=right+left;
+        return x==s;
+    }
+    public static String Task8(String str){
+        String[] arr = str.split("");
+        boolean flag=false;
+        int s=0,m=0;
+        String last="";
+        for (String i: arr){
+            if (!i.equals(last)){
+                if (s>m){
+                    m=s;
+                    s=1;
+                }
+            }
+            else{
+                s++;
+            }
+            last=i;
 
+        }
+        return "0".repeat(m);
+    }
+    public static int Task9(int x){
+        for (double i=2;i<=Math.sqrt(x);i++){
+            if (x%i==0){
+                i=1;
+                x++;
+            }
+        }
+        return x;
+    }
+    public static boolean Task10(double x, double y, double z){
+        if (x>y && x>z){
+            return Math.sqrt(Math.pow(y,2)+Math.pow(z,2))==x;
+        }
+        else if (y>x && y>z){
+            return Math.sqrt(Math.pow(x,2)+Math.pow(z,2))==y;
+        }
+        else if (z>y && z>x){
+            return Math.sqrt(Math.pow(x,2)+Math.pow(y,2))==z;
+        }
+        else {
+            return false;
+        }
+    }
 }
