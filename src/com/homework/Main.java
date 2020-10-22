@@ -8,15 +8,10 @@ public class Main {
         System.out.print("Введите номер модуля: ");
         int module = sc.nextInt();
         switch (module)   {
-            case 1 -> {
-                Module1.main();
-            }
-            case 2 -> {
-                Module2.main();
-            }
-            case 3 -> {
-                Module3.main();
-            }
+            case 1 -> Module1.main();
+            case 2 -> Module2.main();
+            case 3 -> Module3.main();
+            case 4 -> Module4.main();
         }
     }
 }
