@@ -12,6 +12,7 @@ public class Main {
             case 2 -> Module2.main();
             case 3 -> Module3.main();
             case 4 -> Module4.main();
+            case 5 -> Module5.main();
         }
     }
 }
