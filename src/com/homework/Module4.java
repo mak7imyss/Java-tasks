@@ -224,6 +224,7 @@ public class Module4 {
             }
             x = bugger;
             score++;
+            num.clear();
         }
         return score;
     }
