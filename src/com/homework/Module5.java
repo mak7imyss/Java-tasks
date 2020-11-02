@@ -56,12 +56,21 @@ public class Module5 {
                 x = sc.nextInt();
                 System.out.println(Task7(x));
             }
-            case 8 -> {sc.nextLine();
+            case 8 -> {
+                sc.nextLine();
                 System.out.print("Введите строку: ");
                 str = sc.nextLine();
                 System.out.println(Task8(str));}
-            case 9 -> {}
-            case 10 -> {}
+            case 9 -> {
+                sc.nextLine();
+                System.out.print("Введите строку: ");
+                str = sc.nextLine();
+                System.out.println(Task9(str));}
+            case 10 -> {
+                System.out.print("Введите число на соответствие шестиугольному числу: ");
+                x = sc.nextInt();
+                System.out.println(Task10(x));
+            }
         }
     }
     public static String Task1(String str){
@@ -270,7 +279,8 @@ public class Module5 {
         return num;
     }
     public static String Task8(String str){
-//        Cейчас так, в будущем попробую расписать алгоритм без библиотек. Подписывайтесь на канал и следите за обновлениями)
+        /* Сейчас так, в будущем попробую расписать алгоритм без библиотек.
+        Подписывайтесь на канал и следите за обновлениями) */
         MessageDigest messageDigest = null;
         try {
             messageDigest = MessageDigest.getInstance("SHA-256");
@@ -281,5 +291,69 @@ public class Module5 {
         BigInteger noHash = new BigInteger(1, hashBytes);
         String hashStr = noHash.toString(16);
         return hashStr;
+    }
+    public static String Task9(String str) {
+        str=str.toLowerCase();
+        String[] worlds = str.split("\s");
+        Set<String> ban = new HashSet<>(Arrays.asList("and", "the", "of", "in"));
+        StringBuilder answer = new StringBuilder();
+
+        for (String var : worlds) {
+            if (!ban.contains(var)) {
+                answer.append(var.substring(0, 1).toUpperCase()).append(var.substring(1));
+            }
+            else{
+                answer.append(var);
+            }
+            answer.append("\s");
+        }
+        return answer.toString();
+    }
+    public static String Task10(int x){
+//        int count=0;
+//        while (x>0){
+//            if (x%2!=0){
+//                x--;
+//                count++;
+//            }
+//            else {
+//                x-=(6*count);
+//                count++;
+//            }
+//        }
+        /* Решаем квадратное уравнение и находим n-ое центральное шестиугольное число
+        оно же является количеством элементов на верхней грани */
+        int b = -3;
+        int a = 3;
+        int c = 1-x;
+        double disc = Math.pow(b, 2) - 4 * a * c;
+        double root;
+        if (disc >= 0) {
+            root = (-b + Math.sqrt(disc)) / (2 * a);
+            if (root%1!=0){
+                return "Invalid";
+            }
+        }
+        else {
+                return "Invalid";
+            }
+        StringBuilder hex = new StringBuilder();
+        int count=0;
+        //Количество элементов в центральной части
+        int max = (int) (root*2-1);
+        while (count!=x){
+            for (int j=0;j<max-root;j++){
+                hex.append("\s");
+            }
+            for (int i=1;i<root+1;i++){
+
+                hex.append('\u2b22').append("\s");
+            }
+            hex.append("\n");
+            count+=root;
+            if (root<max && count<(x-1)/2) root++;
+            else root--;
+        }
+        return String.valueOf(hex);
     }
 }
